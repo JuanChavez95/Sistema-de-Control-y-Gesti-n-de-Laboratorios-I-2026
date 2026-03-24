@@ -66,5 +66,29 @@
   "terceros_desc":      "Transfer to another account",
   "cambio_pin_desc":    "Update your access PIN",
   "movimientos_desc":   "History of your last transactions",
-  "en_linea": "Online"
+  "en_linea": "Online",
+
+  "consulta_titulo": "Balance inquiry",
+  "cuentas_activas": "Your active accounts",
+  "sin_cuentas": "No active accounts",
+  "consultando": "Checking balances...",
+  "realizar_otra_op": "Perform another transaction",
+  "finalizar_sesion": "End session",
+
+  "deposito_titulo":     "Deposit",
+  "seleccione_monto_sub":"Select amount",
+  "montos_disponibles":  "Available amounts",
+  "ingrese_monto_lbl":   "Enter amount (Bs.)",
+  "monto_seleccionado":  "Selected amount",
+  "otro_monto_btn":      "Other amount",
+  "continuar_btn2":      "Continue",
+
+  "retiro_titulo": "Withdrawal",
+
+  "lbl_operacion": "Operation",
+  "lbl_cuenta":    "Account",
+  "lbl_monto":     "Amount",
+  "lbl_fecha":     "Date",
+  "lbl_otra_op_si": "Yes — Another transaction",
+  "lbl_otra_op_no": "No — End session"
 }

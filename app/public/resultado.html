@@ -78,8 +78,9 @@
 
     // Etiquetas de tipo
     const tipoLabel = {
-      retiro:   t.retiro   || 'Retiro',
-      deposito: t.deposito || 'Depósito'
+      retiro:        t.retiro        || 'Retiro',
+      deposito:      t.deposito      || 'Depósito',
+      transferencia: t.transferencia || 'Transferencia'
     };
 
     const cuentaLabel = {
@@ -88,23 +89,20 @@
     };
 
     // Rellenar detalle
-    document.getElementById('resultado-titulo').textContent =
-      t.operacion_exitosa || 'Operación exitosa';
-
-    document.getElementById('resultado-sub').textContent =
-      tipoLabel[resultado.tipo] || resultado.tipo;
+    document.getElementById('resultado-titulo').textContent = t.operacion_exitosa || 'Operación exitosa';
+    document.getElementById('resultado-sub').textContent    = tipoLabel[resultado.tipo] || resultado.tipo;
 
     document.getElementById('resultado-detalle').innerHTML = `
       <div class="detalle-row">
-        <span class="detalle-key">Operación</span>
+        <span class="detalle-key">${t.lbl_operacion || 'Operación'}</span>
         <span class="detalle-val">${tipoLabel[resultado.tipo] || resultado.tipo}</span>
       </div>
       <div class="detalle-row">
-        <span class="detalle-key">Cuenta</span>
+        <span class="detalle-key">${t.lbl_cuenta || 'Cuenta'}</span>
         <span class="detalle-val">${cuentaLabel[resultado.cuenta_tipo] || resultado.cuenta_tipo}</span>
       </div>
       <div class="detalle-row">
-        <span class="detalle-key">Monto</span>
+        <span class="detalle-key">${t.lbl_monto || 'Monto'}</span>
         <span class="detalle-val highlight">Bs. ${parseFloat(resultado.monto).toFixed(2)}</span>
       </div>
       <div class="detalle-row">
@@ -114,20 +112,17 @@
         </span>
       </div>
       <div class="detalle-row">
-        <span class="detalle-key">Fecha</span>
+        <span class="detalle-key">${t.lbl_fecha || 'Fecha'}</span>
         <span class="detalle-val">${new Date().toLocaleString('es-BO')}</span>
       </div>
     `;
 
     // Textos de idioma
-    if (t.otra_operacion) {
-      document.getElementById('lbl-otra-op').textContent = t.otra_operacion;
-    }
-    if (t.si) document.getElementById('btn-si').textContent = t.si + ' — Otra operación';
-    if (t.no) document.getElementById('btn-no').textContent = t.no + ' — Finalizar sesión';
+    document.getElementById('lbl-otra-op').textContent = t.otra_operacion || '¿Desea realizar otra operación?';
+    document.getElementById('btn-si').textContent      = t.lbl_otra_op_si || 'Sí — Otra operación';
+    document.getElementById('btn-no').textContent      = t.lbl_otra_op_no || 'No — Finalizar sesión';
 
     function otraOperacion() {
-      // Limpiar datos de operación anterior, conservar sesión
       sessionStorage.removeItem('op_tipo');
       sessionStorage.removeItem('op_monto');
       sessionStorage.removeItem('op_resultado');

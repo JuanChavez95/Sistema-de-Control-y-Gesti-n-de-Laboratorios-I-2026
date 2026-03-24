@@ -65,7 +65,7 @@
           <button class="monto-btn" onclick="elegirMonto(500)">
             <span>500</span><span class="currency">Bs.</span>
           </button>
-          <button class="monto-btn otro" onclick="toggleOtroMonto()">
+          <button class="monto-btn otro" id="btn-otro-monto" onclick="toggleOtroMonto()">
             ✎ &nbsp; Otro monto
           </button>
         </div>
@@ -119,22 +119,19 @@
     let montoElegido = 0;
     let otroVisible  = false;
 
-    // Aplicar textos de idioma
-    if (t.retiro) {
-      document.getElementById('titulo-pagina').textContent  = t.retiro            || 'Retiro';
-      document.getElementById('lbl-montos').textContent     = t.seleccione_monto  || 'Montos disponibles';
-      document.getElementById('lbl-otro').textContent       = t.ingrese_monto     || 'Ingrese el monto (Bs.)';
-      document.getElementById('lbl-monto-sel').textContent  = t.monto_seleccionado|| 'Monto seleccionado';
-      document.getElementById('btn-text').textContent       = t.continuar         || 'Continuar';
-    }
+    // Aplicar idioma
+    document.getElementById('titulo-pagina').textContent  = t.retiro_titulo        || 'Retiro';
+    document.getElementById('sub-pagina').textContent     = t.seleccione_monto_sub || 'Seleccione el monto';
+    document.getElementById('lbl-montos').textContent     = t.montos_disponibles   || 'Montos disponibles';
+    document.getElementById('lbl-otro').textContent       = t.ingrese_monto_lbl    || 'Ingrese el monto (Bs.)';
+    document.getElementById('lbl-monto-sel').textContent  = t.monto_seleccionado   || 'Monto seleccionado';
+    document.getElementById('btn-text').textContent       = t.continuar_btn2       || 'Continuar';
+    document.getElementById('btn-otro-monto').innerHTML   = '✎ &nbsp;' + (t.otro_monto_btn || 'Otro monto');
 
     function elegirMonto(m) {
       montoElegido = m;
-      // Quitar selected de todos
       document.querySelectorAll('.monto-btn:not(.otro)').forEach(b => b.classList.remove('selected'));
-      // Marcar el clickeado
       event.currentTarget.classList.add('selected');
-      // Ocultar input personalizado
       document.getElementById('monto-custom').classList.remove('visible');
       document.getElementById('monto-input').value = '';
       otroVisible = false;
@@ -176,7 +173,6 @@
 
     function confirmar() {
       if (montoElegido <= 0) return;
-      // Guardar monto y tipo en sessionStorage para cuenta.html
       sessionStorage.setItem('op_tipo',  'retiro');
       sessionStorage.setItem('op_monto', montoElegido);
       salir('cuenta.html');

@@ -57,5 +57,29 @@
 
   "otra_operacion": "¿Desea realizar otra operación?",
   "fin_sesion": "Sesión finalizada. Retire su tarjeta.",
-  "gracias": "Gracias por usar Banco Fie"
+  "gracias": "Gracias por usar Banco Fie",
+
+  "consulta_titulo":   "Consulta de Saldo",
+  "cuentas_activas":   "Sus cuentas activas",
+  "sin_cuentas":       "Sin cuentas activas",
+  "consultando":       "Consultando saldos...",
+  "realizar_otra_op":  "Realizar otra operación",
+  "finalizar_sesion":  "Finalizar sesión",
+
+  "deposito_titulo":     "Depósito",
+  "seleccione_monto_sub":"Seleccione el monto",
+  "montos_disponibles":  "Montos disponibles",
+  "ingrese_monto_lbl":   "Ingrese el monto (Bs.)",
+  "monto_seleccionado":  "Monto seleccionado",
+  "otro_monto_btn":      "Otro monto",
+  "continuar_btn2":      "Continuar",
+
+  "retiro_titulo": "Retiro",
+
+  "lbl_operacion": "Operación",
+  "lbl_cuenta":    "Cuenta",
+  "lbl_monto":     "Monto",
+  "lbl_fecha":     "Fecha",
+  "lbl_otra_op_si": "Sí — Otra operación",
+  "lbl_otra_op_no": "No — Finalizar sesión"
 }

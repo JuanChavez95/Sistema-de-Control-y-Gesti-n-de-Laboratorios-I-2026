@@ -63,7 +63,7 @@
           <button class="monto-btn" onclick="elegirMonto(500)">
             <span>500</span><span class="currency">Bs.</span>
           </button>
-          <button class="monto-btn otro" onclick="toggleOtroMonto()">
+          <button class="monto-btn otro" onclick="toggleOtroMonto()" id="btn-otro-monto">
             ✎ &nbsp; Otro monto
           </button>
         </div>
@@ -109,6 +109,15 @@
     const t       = JSON.parse(sessionStorage.getItem('translations') || '{}');
     const usuario = JSON.parse(sessionStorage.getItem('usuario') || '{}');
     if (!usuario.id) window.location.href = 'index.html';
+
+    // Aplicar idioma
+    document.getElementById('titulo-pagina').textContent  = t.deposito_titulo      || 'Depósito';
+    document.getElementById('sub-pagina').textContent     = t.seleccione_monto_sub || 'Seleccione el monto';
+    document.getElementById('lbl-montos').textContent     = t.montos_disponibles   || 'Montos disponibles';
+    document.getElementById('lbl-otro').textContent       = t.ingrese_monto_lbl    || 'Ingrese el monto (Bs.)';
+    document.getElementById('lbl-monto-sel').textContent  = t.monto_seleccionado   || 'Monto seleccionado';
+    document.getElementById('btn-text').textContent       = t.continuar_btn2       || 'Continuar';
+    document.getElementById('btn-otro-monto').innerHTML   = '✎ &nbsp;' + (t.otro_monto_btn || 'Otro monto');
 
     let montoElegido = 0;
     let otroVisible  = false;

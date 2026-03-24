@@ -15,12 +15,11 @@
 
   <div class="op-wrapper">
 
-    <!-- Header -->
     <div class="op-header">
       <button class="btn-back" onclick="volver()">←</button>
       <div class="op-header-info">
         <div class="op-header-title" id="titulo-pagina">Consulta de Saldo</div>
-        <div class="op-header-sub">Sus cuentas activas</div>
+        <div class="op-header-sub" id="sub-pagina">Sus cuentas activas</div>
       </div>
       <div class="op-header-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"
@@ -31,26 +30,23 @@
       </div>
     </div>
 
-    <!-- Lista de cuentas -->
     <div class="saldo-list" id="saldo-list">
       <div class="op-msg info visible">
         <span class="spinner"></span>
-        <span>Consultando saldos...</span>
+        <span id="txt-consultando">Consultando saldos...</span>
       </div>
     </div>
 
-    <!-- Mensaje error -->
     <div class="op-msg error" id="op-msg" style="margin-top:12px; width:100%;">
       <span>●</span><span id="msg-text"></span>
     </div>
 
-    <!-- Otra operación -->
     <div style="width:100%; margin-top:20px; display:flex; flex-direction:column; gap:10px;
                 animation: fadeUp 0.5s 0.3s ease both; opacity:0; animation-fill-mode:both;">
       <button class="btn-otra-op si" onclick="salir('menu.html')" id="btn-otra">
         Realizar otra operación
       </button>
-      <button class="btn-otra-op no" onclick="cerrarSesion()">
+      <button class="btn-otra-op no" onclick="cerrarSesion()" id="btn-finalizar">
         Finalizar sesión
       </button>
     </div>
@@ -64,7 +60,13 @@
     const usuario = JSON.parse(sessionStorage.getItem('usuario') || '{}');
     if (!usuario.id) window.location.href = 'index.html';
 
-    // Íconos por tipo de cuenta
+    // Aplicar idioma
+    document.getElementById('titulo-pagina').textContent  = t.consulta_titulo   || 'Consulta de Saldo';
+    document.getElementById('sub-pagina').textContent     = t.cuentas_activas   || 'Sus cuentas activas';
+    document.getElementById('txt-consultando').textContent= t.consultando       || 'Consultando saldos...';
+    document.getElementById('btn-otra').textContent       = t.realizar_otra_op  || 'Realizar otra operación';
+    document.getElementById('btn-finalizar').textContent  = t.finalizar_sesion  || 'Finalizar sesión';
+
     const iconos = {
       ahorros: `<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="5" width="20" height="14" rx="2"/>
@@ -86,7 +88,7 @@
         const lista = document.getElementById('saldo-list');
 
         if (!data.cuentas || data.cuentas.length === 0) {
-          lista.innerHTML = `<div class="op-msg info visible"><span>Sin cuentas activas</span></div>`;
+          lista.innerHTML = `<div class="op-msg info visible"><span>${t.sin_cuentas || 'Sin cuentas activas'}</span></div>`;
           return;
         }
 
@@ -118,11 +120,10 @@
     }
 
     function formatearNumCuenta(n) {
-      // Ej: 000100000001 → **** **** 0001
       return '**** **** ' + n.slice(-4);
     }
 
-    function volver()  { salir('menu.html'); }
+    function volver() { salir('menu.html'); }
 
     async function cerrarSesion() {
       try { await fetch(`${API}/logout.php`, { method: 'POST' }); } catch {}
